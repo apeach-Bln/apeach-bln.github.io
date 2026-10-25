@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PokemonTCGTrackerBot</title>
+<style>
+body{font:16px/1.55 system-ui,sans-serif;max-width:42rem;margin:2rem auto;padding:0 1rem;color:#1b1f24;background:#fff}
+@media (prefers-color-scheme:dark){body{color:#e8ebef;background:#101317}a{color:#8ab4f8}}
+code{background:rgba(127,127,127,.18);padding:.1em .3em;border-radius:4px}
+</style>
+</head>
+<body>
+<h1>PokemonTCGTrackerBot</h1>
+<p>This page describes an automated program that reads public product pages of online shops. It is operated by a private individual in Germany.</p>
+
+<h2>What it does</h2>
+<p>It reads publicly available product information (title, price, stock status, product image) from online shops that sell collectible trading cards, mainly through the public <code>products.json</code> feed and collection pages of Shopify storefronts. The data is used for a private price and availability overview. It is not resold and not published.</p>
+
+<h2>How it behaves</h2>
+<ul>
+<li>It identifies itself with the User-Agent <code>PokemonTCGTrackerBot/1.0 (+https://apeach-bln.github.io/)</code>.</li>
+<li>Requests to Shopify storefronts are signed with Web Bot Auth (HTTP Message Signatures, Ed25519). The public key is at <a href="/.well-known/http-message-signatures-directory"><code>/.well-known/http-message-signatures-directory</code></a>.</li>
+<li>Each shop is read once every 3 to 24 hours, one request at a time, with a pause of at least 3 seconds between requests.</li>
+<li>It follows each shop's <code>robots.txt</code>.</li>
+<li>On HTTP 429 or 403 it stops for that shop and waits at least for the <code>Retry-After</code> period before trying again.</li>
+<li>It does not log in, does not use accounts or carts, and does not try to get around bot protection.</li>
+</ul>
+
+<h2>Opt out / contact</h2>
+<p>If you operate a shop and do not want to be read by this bot, please open an issue at <a href="https://github.com/apeach-Bln/apeach-bln.github.io/issues">github.com/apeach-Bln/apeach-bln.github.io/issues</a> with your shop's domain. It will be excluded.</p>
+</body>
+</html>
